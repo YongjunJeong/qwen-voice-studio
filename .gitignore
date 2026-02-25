@@ -1,0 +1,28 @@
+# Mac OS
+.DS_Store
+
+# Virtual Environments
+venv/
+env/
+.env
+
+# Python Caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# User Media (Uploads & Generations)
+uploads/
+generations/
+*.m4a
+*.wav
+*.mp3
+*.flac
+
+# AI Model Files (Do not commit large weights/vocab)
+*.safetensors
+*.bin
+*.pt
+model.safetensors
+merges.txt
+vocab.json

@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-multipart
+pydub
+audioop-lts
+soundfile
+torch
+torchaudio
+transformers
+hf_transfer
+qwen-tts
+librosa
+tokenizers
+accelerate
