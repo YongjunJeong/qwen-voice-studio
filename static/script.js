@@ -16,10 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentRefAudioPath = null;
 
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
     // File Selection Handling
     fileInput.addEventListener("change", async (e) => {
         const file = e.target.files[0];
         if (!file) return;
+
+        if (file.size > MAX_FILE_SIZE) {
+            alert("파일 크기는 10MB 이하여야 합니다.");
+            fileInput.value = "";
+            return;
+        }
 
         // Visual feedback
         uploadZone.querySelector("p").innerText = "오디오 분석 및 기계학습 전사(STT) 진행 중...";
@@ -130,13 +138,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.className = "history-card";
 
-        card.innerHTML = `
-            <div class="meta">${timestamp} (소요시간: ${timeTaken}초)</div>
-            <p>${text}</p>
-            <audio controls src="${audioUrl}"></audio>
-        `;
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = `${timestamp} (소요시간: ${timeTaken}초)`;
 
-        // Add to top of list
+        const p = document.createElement("p");
+        p.textContent = text;
+
+        const audio = document.createElement("audio");
+        audio.controls = true;
+        audio.src = audioUrl;
+
+        card.appendChild(meta);
+        card.appendChild(p);
+        card.appendChild(audio);
+
         historyList.prepend(card);
     }
 });
